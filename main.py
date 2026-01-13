@@ -22,14 +22,14 @@ def wordle(guesses):
     if type(guesses) == str:
         return single_wordle_guess(wordToGuess, guesses)
     
-    guessResults = []
+    guessResultsOutput = []
     
     for position, guessedWord in enumerate(guesses):
     
         guessResult = ""
 
         if position > 5:
-            guessResults.append("Number of guesses exceeded, you did not guess the word.")
+            guessResultsOutput.append("Number of guesses exceeded, you did not guess the word.")
             break
         
         for index, letter in enumerate(guessedWord):
@@ -40,8 +40,12 @@ def wordle(guesses):
                 else:
                     guessResult += '-'
                     
-        guessResults.append(guessResult)
-
-    return guessResults
+        guessResultsOutput.append(guessResult)
         
-print(wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SAUCES", "PASTAS", "EXCEED"]))
+        if guessResultsOutput[-1] == "GGGGGG":
+            guessResultsOutput.append(f"The word was SOURCE, you guessed it in {len(guessResultsOutput)} guesses.")
+            break
+
+    return guessResultsOutput
+        
+print(wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SOURCE", "PASTAS", "EXCEED"]))

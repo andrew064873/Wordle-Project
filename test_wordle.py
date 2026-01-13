@@ -20,7 +20,10 @@ def test_multiple_correct_letters():
     assert wordle("SSSSSS") == "GYYYYY"
     
 def test_multiple_guesses():
-    assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SOURCE"]) == ["------", "--Y---", "G-----", "GYYYYY", "GGGGGG"]
+    assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SAUCES"]) == ["------", "--Y---", "G-----", "GYYYYY", "G-GYYY"]
     
 def test_exceed_max_guesses_incorrect():
     assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SAUCES", "PASTAS", "EXCEED"]) == ["------", "--Y---", "G-----", "GYYYYY", "G-GYYY", "--Y--Y", "Number of guesses exceeded, you did not guess the word."]
+    
+def test_word_guessed():
+    assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SOURCE"]) == ["------", "--Y---", "G-----", "GGGGGG", "The word was SOURCE, you guessed it in 4 guesses."]
