@@ -1,83 +1,83 @@
 import random
 
-def generate_word():
+def generateWord():
     return "SOURCE"
 
-def get_word():
-    with open('6-letter Words.txt') as wordDictionary:
-        wordList = wordDictionary.read().upper().split(", ")
+def getWord():
+    with open('6-letter Words.txt') as word_dictionary:
+        word_list = word_dictionary.read().upper().split(", ")
         
-    return wordList[random.randint(0, len(wordList) - 1)]
+    return word_list[random.randint(0, len(word_list) - 1)]
 
-def play_wordle():
+def playWordle():
         
-    wordToGuess = get_word()
-    guessResultsOutput = []
+    word_to_guess = getWord()
+    guess_results_output = []
     guesses = []
     
     print("A word has been chosen. Begin your guesses for the 6-letter word.")
     
     while True:
-        if len(guessResultsOutput) > 5:
-            print(f"Number of guesses exceeded, you did not guess the word, {wordToGuess}.")
+        if len(guess_results_output) > 5:
+            print(f"Number of guesses exceeded, you did not guess the word, {word_to_guess}.")
             break
         
         print(f"Guess {len(guesses) + 1}")
         guesses.append(input().upper())
         
-        guessResultsOutput.append(single_wordle_guess(wordToGuess, guesses[-1]))
+        guess_results_output.append(singleWordleGuess(word_to_guess, guesses[-1]))
         
-        print(guessResultsOutput[-1])
+        print(guess_results_output[-1])
         
-        if guessResultsOutput[-1] == "GGGGGG":
-            print(f"The word was {wordToGuess}, you guessed it in {len(guessResultsOutput)} guess" + ("es." if len(guessResultsOutput) > 1 else "."))
+        if guess_results_output[-1] == "GGGGGG":
+            print(f"The word was {word_to_guess}, you guessed it in {len(guess_results_output)} guess" + ("es." if len(guess_results_output) > 1 else "."))
             break
         
-def single_wordle_guess(wordToGuess, guessedWord):
-    guessResult = ""
+def singleWordleGuess(word_to_guess, guessed_word):
+    guess_result = ""
             
-    for index, letter in enumerate(guessedWord):
-            if (index, letter) in enumerate(wordToGuess):
-                guessResult += 'G'
-            elif letter in wordToGuess:
-                guessResult += 'Y'
+    for index, letter in enumerate(guessed_word):
+            if (index, letter) in enumerate(word_to_guess):
+                guess_result += 'G'
+            elif letter in word_to_guess:
+                guess_result += 'Y'
             else:
-                guessResult += '-'
+                guess_result += '-'
                     
-    return guessResult
+    return guess_result
 
 def wordle(guesses):
     
-    wordToGuess = generate_word()
+    word_to_guess = generateWord()
     
     if type(guesses) == str:
-        return single_wordle_guess(wordToGuess, guesses)
+        return singleWordleGuess(word_to_guess, guesses)
     
-    guessResultsOutput = []
+    guess_results_output = []
     
-    for position, guessedWord in enumerate(guesses):
+    for position, guessed_word in enumerate(guesses):
     
-        guessResult = ""
+        guess_result = ""
 
         if position > 5:
-            guessResultsOutput.append("Number of guesses exceeded, you did not guess the word.")
+            guess_results_output.append("Number of guesses exceeded, you did not guess the word.")
             break
         
-        for index, letter in enumerate(guessedWord):
-                if (index, letter) in enumerate(wordToGuess):
-                    guessResult += 'G'
-                elif letter in wordToGuess:
-                    guessResult += 'Y'
+        for index, letter in enumerate(guessed_word):
+                if (index, letter) in enumerate(word_to_guess):
+                    guess_result += 'G'
+                elif letter in word_to_guess:
+                    guess_result += 'Y'
                 else:
-                    guessResult += '-'
+                    guess_result += '-'
                     
-        guessResultsOutput.append(guessResult)
+        guess_results_output.append(guess_result)
         
-        if guessResultsOutput[-1] == "GGGGGG":
-            guessResultsOutput.append(f"The word was SOURCE, you guessed it in {len(guessResultsOutput)} guesses.")
+        if guess_results_output[-1] == "GGGGGG":
+            guess_results_output.append(f"The word was SOURCE, you guessed it in {len(guess_results_output)} guesses.")
             break
 
-    return guessResultsOutput
+    return guess_results_output
 
 if __name__ == "__main__":
-    play_wordle()
+    playWordle()
