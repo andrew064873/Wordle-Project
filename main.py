@@ -1,7 +1,40 @@
+import random
 
 def generate_word():
     return "SOURCE"
 
+def getWord():
+    with open('6-letter Words.txt') as wordDictionary:
+        wordList = wordDictionary.read().upper().split(", ")
+        
+    return wordList[random.randint(0, len(wordList) - 1)]
+
+def play_wordle():
+    
+    gameOn = True
+    
+    wordToGuess = getWord()
+    guessResultsOutput = []
+    guesses = []
+    
+    print(f"A word has been chosen. Begin your guesses for the 6-letter word. {wordToGuess}")
+    
+    while gameOn:
+        if len(guessResultsOutput) > 5:
+            print(f"Number of guesses exceeded, you did not guess the word, {wordToGuess}.")
+            break
+        
+        print(f"Guess {len(guesses) + 1}")
+        guesses.append(input().upper())
+        
+        guessResultsOutput.append(single_wordle_guess(wordToGuess, guesses[-1]))
+        
+        print(guessResultsOutput[-1])
+        
+        if guessResultsOutput[-1] == "GGGGGG":
+            print(f"The word was {wordToGuess}, you guessed it in {len(guessResultsOutput)} guess" + ("es." if len(guessResultsOutput) > 1 else "."))
+            break
+        
 def single_wordle_guess(wordToGuess, guessedWord):
     guessResult = ""
             
@@ -47,5 +80,5 @@ def wordle(guesses):
             break
 
     return guessResultsOutput
-        
-print(wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SOURCE", "PASTAS", "EXCEED"]))
+
+play_wordle()
