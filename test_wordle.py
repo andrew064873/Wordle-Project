@@ -12,3 +12,6 @@ def test_match_no_correct_placement():
     
 def test_match_one_correct_placement():
     assert wordle("SXXXXX") == "G-----"
+    
+def test_correct_guess():
+    assert wordle("SOURCE") == "GGGGGG"
