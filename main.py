@@ -15,7 +15,6 @@ def wordle(guessedWord):
             else:
                 guessResult += "-"
 
-                
     return guessResult
         
 print(wordle("PLANT"))

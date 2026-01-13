@@ -15,3 +15,6 @@ def test_match_one_correct_placement():
     
 def test_correct_guess():
     assert wordle("SOURCE") == "GGGGGG"
+    
+def test_multiple_correct_letters():
+    assert wordle("SSSSSS") == "GYYYYY"
