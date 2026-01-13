@@ -3,23 +3,21 @@ import random
 def generate_word():
     return "SOURCE"
 
-def getWord():
+def get_word():
     with open('6-letter Words.txt') as wordDictionary:
         wordList = wordDictionary.read().upper().split(", ")
         
     return wordList[random.randint(0, len(wordList) - 1)]
 
 def play_wordle():
-    
-    gameOn = True
-    
-    wordToGuess = getWord()
+        
+    wordToGuess = get_word()
     guessResultsOutput = []
     guesses = []
     
-    print(f"A word has been chosen. Begin your guesses for the 6-letter word. {wordToGuess}")
+    print("A word has been chosen. Begin your guesses for the 6-letter word.")
     
-    while gameOn:
+    while True:
         if len(guessResultsOutput) > 5:
             print(f"Number of guesses exceeded, you did not guess the word, {wordToGuess}.")
             break
