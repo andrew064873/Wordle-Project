@@ -18,3 +18,6 @@ def test_correct_guess():
     
 def test_multiple_correct_letters():
     assert wordle("SSSSSS") == "GYYYYY"
+    
+def test_multiple_guesses():
+    assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SOURCE"]) == ["------", "--Y---", "G-----", "GYYYYY", "GGGGGG"]
