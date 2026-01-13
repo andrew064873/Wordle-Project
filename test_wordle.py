@@ -27,3 +27,6 @@ def test_exceed_max_guesses_incorrect():
     
 def test_word_guessed():
     assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SOURCE"]) == ["------", "--Y---", "G-----", "GGGGGG", "The word was SOURCE, you guessed it in 4 guesses."]
+    
+def test_terminate_game_after_word_guessed():
+    assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SOURCE", "PASTAS", "EXCEED"]) == ["------", "--Y---", "G-----", "GYYYYY", "GGGGGG", "The word was SOURCE, you guessed it in 5 guesses."]
