@@ -24,9 +24,13 @@ def wordle(guesses):
     
     guessResults = []
     
-    for guessedWord in guesses:
+    for position, guessedWord in enumerate(guesses):
     
         guessResult = ""
+
+        if position > 5:
+            guessResults.append("Number of guesses exceeded, you did not guess the word.")
+            break
         
         for index, letter in enumerate(guessedWord):
                 if (index, letter) in enumerate(wordToGuess):
@@ -40,4 +44,4 @@ def wordle(guesses):
 
     return guessResults
         
-print(wordle("PANTSY"))
+print(wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SAUCES", "PASTAS", "EXCEED"]))

@@ -13,7 +13,7 @@ def test_match_no_correct_placement():
 def test_match_one_correct_placement():
     assert wordle("SXXXXX") == "G-----"
     
-def test_correct_guess():
+def test_correct_word():
     assert wordle("SOURCE") == "GGGGGG"
     
 def test_multiple_correct_letters():
@@ -21,3 +21,6 @@ def test_multiple_correct_letters():
     
 def test_multiple_guesses():
     assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SOURCE"]) == ["------", "--Y---", "G-----", "GYYYYY", "GGGGGG"]
+    
+def test_exceed_max_guesses_incorrect():
+    assert wordle(["PLANTY", "XXOXXX", "SXXXXX", "SSSSSS", "SAUCES", "PASTAS", "EXCEED"]) == ["------", "--Y---", "G-----", "GYYYYY", "G-GYYY", "--Y--Y", "Number of guesses exceeded, you did not guess the word."]
